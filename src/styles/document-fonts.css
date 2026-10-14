@@ -1,0 +1,80 @@
+/*
+ * Fonts used for text *placed on the document*. The exact same files are embedded
+ * into exported PDFs, and the metric overrides below pin ascent/descent/line-gap to
+ * the constants in src/text/metrics.ts so on-screen layout and PDF output agree on
+ * every platform (macOS WKWebView and Windows WebView2 otherwise choose different
+ * vertical metrics tables).
+ */
+@font-face {
+  font-family: 'FF Doc Sans';
+  src: url('../assets/fonts/NotoSans-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: block;
+  ascent-override: 106.9%;
+  descent-override: 29.3%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'FF Doc Sans';
+  src: url('../assets/fonts/NotoSans-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-display: block;
+  ascent-override: 106.9%;
+  descent-override: 29.3%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'FF Doc Sans';
+  src: url('../assets/fonts/NotoSansHebrew-Regular.ttf') format('truetype');
+  font-weight: 400;
+  unicode-range: U+0590-05FF, U+FB1D-FB4F;
+  font-display: block;
+  ascent-override: 106.9%;
+  descent-override: 29.3%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'FF Doc Sans';
+  src: url('../assets/fonts/NotoSansHebrew-Bold.ttf') format('truetype');
+  font-weight: 700;
+  unicode-range: U+0590-05FF, U+FB1D-FB4F;
+  font-display: block;
+  ascent-override: 106.9%;
+  descent-override: 29.3%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'FF Doc Serif';
+  src: url('../assets/fonts/NotoSerif-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: block;
+  ascent-override: 106.9%;
+  descent-override: 29.3%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'FF Doc Serif';
+  src: url('../assets/fonts/NotoSerifHebrew-Regular.ttf') format('truetype');
+  font-weight: 400;
+  unicode-range: U+0590-05FF, U+FB1D-FB4F;
+  font-display: block;
+  ascent-override: 106.9%;
+  descent-override: 29.3%;
+  line-gap-override: 0%;
+}
+/* Script faces for typed signatures (rasterized to an image before placement). */
+@font-face {
+  font-family: 'FF Sig Dancing';
+  src: url('../assets/fonts/DancingScript-SemiBold.ttf') format('truetype');
+  font-display: block;
+}
+@font-face {
+  font-family: 'FF Sig Caveat';
+  src: url('../assets/fonts/Caveat-Medium.ttf') format('truetype');
+  font-display: block;
+}
+@font-face {
+  font-family: 'FF Sig Vibes';
+  src: url('../assets/fonts/GreatVibes-Regular.ttf') format('truetype');
+  font-display: block;
+}

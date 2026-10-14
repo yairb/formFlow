@@ -1,0 +1,157 @@
+/*
+ * FormFlow design tokens.
+ * Every color, radius, shadow, duration and layer used by the UI is defined here.
+ * Components consume them through Tailwind utilities (see @theme in index.css)
+ * or directly as CSS variables. Dark mode re-maps the same semantic names.
+ */
+:root {
+  color-scheme: light;
+
+  /* Neutrals — warm, low-chroma grays. */
+  --ff-bg-chrome: #f6f6f4;        /* header, sidebars */
+  --ff-bg-panel: #fbfbfa;         /* inspector body */
+  --ff-bg-elevated: #ffffff;      /* popovers, dialogs, inputs */
+  --ff-bg-canvas: #e9e9e6;        /* workspace behind pages */
+  --ff-bg-hover: rgb(24 24 27 / 0.045);
+  --ff-bg-active: rgb(24 24 27 / 0.08);
+  --ff-bg-inset: rgb(24 24 27 / 0.035);
+
+  --ff-fg: #1c1c1f;
+  --ff-fg-secondary: #5d5f66;
+  --ff-fg-tertiary: #8b8d94;
+  --ff-fg-disabled: #b4b5ba;
+  --ff-fg-on-accent: #ffffff;
+
+  --ff-border: #e3e3df;
+  --ff-border-strong: #d2d2cd;
+  --ff-border-subtle: #ecece8;
+
+  /* Accent — a calm ink blue. */
+  --ff-accent: #4a5bdc;
+  --ff-accent-hover: #3f4fcc;
+  --ff-accent-pressed: #3645b8;
+  --ff-accent-soft: rgb(74 91 220 / 0.1);
+  --ff-accent-softer: rgb(74 91 220 / 0.06);
+  --ff-accent-border: rgb(74 91 220 / 0.42);
+  --ff-accent-fg: #3a49c4;        /* accent text on light surfaces */
+
+  --ff-success: #1d8f5a;
+  --ff-success-soft: rgb(29 143 90 / 0.1);
+  --ff-warning: #b86e0b;
+  --ff-warning-soft: rgb(214 140 30 / 0.13);
+  --ff-warning-border: rgb(196 125 20 / 0.55);
+  --ff-danger: #cf3a3a;
+  --ff-danger-soft: rgb(207 58 58 / 0.09);
+
+  /* Document overlays (drawn on top of white PDF pages in both themes). */
+  --ff-doc-field: rgb(74 91 220 / 0.07);
+  --ff-doc-field-border: rgb(74 91 220 / 0.38);
+  --ff-doc-field-uncertain: rgb(214 140 30 / 0.08);
+  --ff-doc-field-uncertain-border: rgb(196 125 20 / 0.6);
+  --ff-doc-field-done: rgb(29 143 90 / 0.05);
+  --ff-doc-field-done-border: rgb(29 143 90 / 0.35);
+  --ff-doc-selection: #4a5bdc;
+
+  /* Typography */
+  --ff-font-ui: 'Inter Variable', 'Inter', ui-sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  --ff-font-mono: ui-monospace, 'SF Mono', 'Cascadia Code', Menlo, Consolas, monospace;
+  --ff-text-2xs: 10.5px;
+  --ff-text-xs: 11.5px;
+  --ff-text-sm: 12.5px;
+  --ff-text-md: 13px;
+  --ff-text-lg: 15px;
+  --ff-text-xl: 19px;
+  --ff-text-2xl: 26px;
+
+  /* Radii */
+  --ff-radius-xs: 4px;
+  --ff-radius-sm: 6px;
+  --ff-radius-md: 8px;
+  --ff-radius-lg: 12px;
+
+  /* Control sizing */
+  --ff-control-sm: 24px;
+  --ff-control-md: 28px;
+  --ff-control-lg: 32px;
+  --ff-header-height: 48px;
+
+  /* Elevation */
+  --ff-shadow-xs: 0 1px 1px rgb(16 16 20 / 0.04);
+  --ff-shadow-sm: 0 1px 2px rgb(16 16 20 / 0.06), 0 0 0 1px rgb(16 16 20 / 0.04);
+  --ff-shadow-md: 0 4px 16px -2px rgb(16 16 20 / 0.1), 0 1px 3px rgb(16 16 20 / 0.06), 0 0 0 1px rgb(16 16 20 / 0.05);
+  --ff-shadow-lg: 0 18px 48px -8px rgb(16 16 20 / 0.2), 0 4px 12px rgb(16 16 20 / 0.06), 0 0 0 1px rgb(16 16 20 / 0.06);
+  --ff-shadow-page: 0 0 0 1px rgb(16 16 20 / 0.05), 0 1px 2px rgb(16 16 20 / 0.06), 0 6px 18px -6px rgb(16 16 20 / 0.12);
+
+  /* Focus */
+  --ff-focus-ring: 0 0 0 2px var(--ff-bg-elevated), 0 0 0 4px rgb(74 91 220 / 0.55);
+  --ff-focus-ring-inset: inset 0 0 0 1.5px var(--ff-accent);
+
+  /* Motion */
+  --ff-ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ff-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ff-duration-fast: 110ms;
+  --ff-duration-base: 170ms;
+  --ff-duration-slow: 260ms;
+
+  /* Layers */
+  --ff-z-page-fields: 1;
+  --ff-z-page-annotations: 2;
+  --ff-z-page-selection: 3;
+  --ff-z-workspace-float: 20;
+  --ff-z-panel: 30;
+  --ff-z-popover: 50;
+  --ff-z-dialog: 60;
+  --ff-z-toast: 70;
+  --ff-z-tooltip: 80;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --ff-duration-fast: 0ms;
+    --ff-duration-base: 0ms;
+    --ff-duration-slow: 0ms;
+  }
+}
+
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --ff-bg-chrome: #18191c;
+  --ff-bg-panel: #1b1c1f;
+  --ff-bg-elevated: #232428;
+  --ff-bg-canvas: #0f1012;
+  --ff-bg-hover: rgb(255 255 255 / 0.055);
+  --ff-bg-active: rgb(255 255 255 / 0.1);
+  --ff-bg-inset: rgb(255 255 255 / 0.04);
+
+  --ff-fg: #ececee;
+  --ff-fg-secondary: #a4a6ad;
+  --ff-fg-tertiary: #75777e;
+  --ff-fg-disabled: #55575d;
+
+  --ff-border: #2c2d31;
+  --ff-border-strong: #3a3b40;
+  --ff-border-subtle: #252629;
+
+  --ff-accent: #6475f0;
+  --ff-accent-hover: #7282f5;
+  --ff-accent-pressed: #5666e0;
+  --ff-accent-soft: rgb(100 117 240 / 0.18);
+  --ff-accent-softer: rgb(100 117 240 / 0.1);
+  --ff-accent-border: rgb(100 117 240 / 0.5);
+  --ff-accent-fg: #98a4ff;
+
+  --ff-success: #3cbf82;
+  --ff-success-soft: rgb(60 191 130 / 0.14);
+  --ff-warning: #e2a03f;
+  --ff-warning-soft: rgb(226 160 63 / 0.14);
+  --ff-warning-border: rgb(226 160 63 / 0.55);
+  --ff-danger: #f06464;
+  --ff-danger-soft: rgb(240 100 100 / 0.13);
+
+  --ff-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.3), 0 0 0 1px rgb(255 255 255 / 0.05);
+  --ff-shadow-md: 0 6px 20px -2px rgb(0 0 0 / 0.5), 0 0 0 1px rgb(255 255 255 / 0.07);
+  --ff-shadow-lg: 0 20px 56px -8px rgb(0 0 0 / 0.65), 0 0 0 1px rgb(255 255 255 / 0.08);
+  --ff-shadow-page: 0 0 0 1px rgb(0 0 0 / 0.4), 0 8px 24px -6px rgb(0 0 0 / 0.6);
+  --ff-focus-ring: 0 0 0 2px var(--ff-bg-chrome), 0 0 0 4px rgb(124 140 255 / 0.65);
+}

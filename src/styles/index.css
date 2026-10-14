@@ -1,0 +1,233 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/inter';
+@import './tokens.css';
+@import './document-fonts.css';
+
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
+/* Expose tokens to Tailwind so utilities like bg-chrome / text-fg-secondary exist. */
+@theme inline {
+  --color-chrome: var(--ff-bg-chrome);
+  --color-panel: var(--ff-bg-panel);
+  --color-elevated: var(--ff-bg-elevated);
+  --color-canvas: var(--ff-bg-canvas);
+  --color-hover: var(--ff-bg-hover);
+  --color-active: var(--ff-bg-active);
+  --color-inset: var(--ff-bg-inset);
+  --color-fg: var(--ff-fg);
+  --color-fg-secondary: var(--ff-fg-secondary);
+  --color-fg-tertiary: var(--ff-fg-tertiary);
+  --color-fg-disabled: var(--ff-fg-disabled);
+  --color-fg-on-accent: var(--ff-fg-on-accent);
+  --color-line: var(--ff-border);
+  --color-line-strong: var(--ff-border-strong);
+  --color-line-subtle: var(--ff-border-subtle);
+  --color-accent: var(--ff-accent);
+  --color-accent-hover: var(--ff-accent-hover);
+  --color-accent-pressed: var(--ff-accent-pressed);
+  --color-accent-soft: var(--ff-accent-soft);
+  --color-accent-softer: var(--ff-accent-softer);
+  --color-accent-border: var(--ff-accent-border);
+  --color-accent-fg: var(--ff-accent-fg);
+  --color-success: var(--ff-success);
+  --color-success-soft: var(--ff-success-soft);
+  --color-warning: var(--ff-warning);
+  --color-warning-soft: var(--ff-warning-soft);
+  --color-danger: var(--ff-danger);
+  --color-danger-soft: var(--ff-danger-soft);
+
+  --font-sans: var(--ff-font-ui);
+  --font-mono: var(--ff-font-mono);
+
+  --text-2xs: var(--ff-text-2xs);
+  --text-2xs--line-height: 14px;
+  --text-xs: var(--ff-text-xs);
+  --text-xs--line-height: 16px;
+  --text-sm: var(--ff-text-sm);
+  --text-sm--line-height: 18px;
+  --text-md: var(--ff-text-md);
+  --text-md--line-height: 19px;
+  --text-lg: var(--ff-text-lg);
+  --text-lg--line-height: 22px;
+  --text-xl: var(--ff-text-xl);
+  --text-xl--line-height: 26px;
+  --text-2xl: var(--ff-text-2xl);
+  --text-2xl--line-height: 32px;
+
+  --radius-xs: var(--ff-radius-xs);
+  --radius-sm: var(--ff-radius-sm);
+  --radius-md: var(--ff-radius-md);
+  --radius-lg: var(--ff-radius-lg);
+
+  --shadow-xs: var(--ff-shadow-xs);
+  --shadow-sm: var(--ff-shadow-sm);
+  --shadow-md: var(--ff-shadow-md);
+  --shadow-lg: var(--ff-shadow-lg);
+  --shadow-page: var(--ff-shadow-page);
+  --shadow-focus: var(--ff-focus-ring);
+
+  --ease-out: var(--ff-ease-out);
+}
+
+@layer base {
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+  body {
+    margin: 0;
+    background: var(--ff-bg-chrome);
+    color: var(--ff-fg);
+    font-family: var(--ff-font-ui);
+    font-size: var(--ff-text-md);
+    line-height: 1.45;
+    font-feature-settings: 'cv11', 'ss03';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow: hidden;
+    user-select: none;
+    -webkit-user-select: none;
+    cursor: default;
+  }
+  input,
+  textarea,
+  [contenteditable='true'] {
+    user-select: text;
+    -webkit-user-select: text;
+  }
+  button {
+    cursor: default;
+  }
+  :focus {
+    outline: none;
+  }
+  :focus-visible {
+    outline: none;
+    box-shadow: var(--ff-focus-ring);
+  }
+  ::selection {
+    background: var(--ff-accent-soft);
+  }
+}
+
+@layer utilities {
+  .tabular {
+    font-variant-numeric: tabular-nums;
+  }
+  .transition-ui {
+    transition-duration: var(--ff-duration-base);
+    transition-timing-function: var(--ff-ease-out);
+  }
+  .drag-region {
+    -webkit-app-region: drag;
+  }
+  .no-drag {
+    -webkit-app-region: no-drag;
+  }
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: var(--ff-border-strong) transparent;
+  }
+}
+
+/* Thin, unobtrusive scrollbars for WebKit (macOS WKWebView, WebView2). */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--ff-border-strong);
+  border-radius: 999px;
+  border: 3px solid transparent;
+  background-clip: content-box;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--ff-fg-tertiary);
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@keyframes ff-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes ff-pop-in {
+  from { opacity: 0; transform: translateY(4px) scale(0.98); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ff-slide-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes ff-shimmer {
+  from { background-position: -200% 0; }
+  to { background-position: 200% 0; }
+}
+@keyframes ff-pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgb(74 91 220 / 0.35); }
+  100% { box-shadow: 0 0 0 8px rgb(74 91 220 / 0); }
+}
+@keyframes ff-spin {
+  to { transform: rotate(360deg); }
+}
+
+.ff-animate-pop {
+  animation: ff-pop-in var(--ff-duration-base) var(--ff-ease-out);
+}
+.ff-animate-fade {
+  animation: ff-fade-in var(--ff-duration-base) var(--ff-ease-out);
+}
+.ff-animate-slide-up {
+  animation: ff-slide-up var(--ff-duration-slow) var(--ff-ease-out);
+}
+.ff-skeleton {
+  background: linear-gradient(90deg, var(--ff-bg-inset) 0%, var(--ff-bg-hover) 50%, var(--ff-bg-inset) 100%);
+  background-size: 200% 100%;
+  animation: ff-shimmer 1.6s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ff-skeleton { animation: none; }
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+}
+
+/* Document text drawn on pages: no kerning or ligatures, so glyph advances match the
+   exported PDF (pdf-lib draws plain advances). See src/text/metrics.ts. */
+.ff-doc-text {
+  font-kerning: none;
+  font-feature-settings: 'liga' 0, 'clig' 0, 'dlig' 0, 'calt' 0, 'kern' 0;
+  font-variant-ligatures: none;
+  font-synthesis: none;
+  letter-spacing: 0;
+  word-spacing: 0;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
+  white-space: pre;
+}
+
+/* Active form field — the one guided mode or a click focused. */
+.ff-field-active {
+  border-color: var(--ff-accent) !important;
+  border-style: solid !important;
+  background-color: rgb(74 91 220 / 0.12) !important;
+  box-shadow: 0 0 0 3px rgb(74 91 220 / 0.22);
+  animation: ff-field-pulse 1.6s ease-out 1;
+}
+@keyframes ff-field-pulse {
+  0% { box-shadow: 0 0 0 0 rgb(74 91 220 / 0.45); }
+  60% { box-shadow: 0 0 0 7px rgb(74 91 220 / 0); }
+  100% { box-shadow: 0 0 0 3px rgb(74 91 220 / 0.22); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ff-field-active { animation: none; }
+}
+
+.ff-page {
+  box-shadow: var(--ff-shadow-page);
+  contain: layout size;
+}
